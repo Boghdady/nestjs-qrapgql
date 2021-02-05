@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import User from './models/user';
 
 @Injectable()
-export class UserServices {
+export class UserService {
   private users: User[] = [];
 
   public createUser(): User {}
