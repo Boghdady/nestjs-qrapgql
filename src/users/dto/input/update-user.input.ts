@@ -1,4 +1,4 @@
-import { Field, InputType } from '@nestjs/qraphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 
 @InputType()
@@ -11,7 +11,7 @@ export class UpdateUserInput {
   @IsOptional()
   age?: number;
 
-  @Field()
+  @Field({ nullable: true })
   @IsOptional()
   isSubscribed?: boolean;
 }

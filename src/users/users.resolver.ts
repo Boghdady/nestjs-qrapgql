@@ -1,4 +1,4 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/qraphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
 import { GetUserArgs } from './dto/args/get-user.args';
 import { GetUsersArgs } from './dto/args/get-users.args';
@@ -14,26 +14,26 @@ export class UserResolver {
 
   @Query(() => User, { name: 'user', nullable: true })
   getUser(@Args() getUserArgs: GetUserArgs): User {
-    return this.userServices.getUser();
+    return this.userServices.getUser(getUserArgs);
   }
 
   @Query(() => [User], { name: 'users', nullable: 'items' })
   getUsers(@Args() getUsersArgs: GetUsersArgs): User[] {
-    return this.userServices.getUsers();
+    return this.userServices.getUsers(getUsersArgs);
   }
 
   @Mutation(() => User)
   createUser(@Args('createUserData') createUserData: CreateUserInput): User {
-    return this.userServices.createUser();
+    return this.userServices.createUser(createUserData);
   }
 
   @Mutation(() => User)
   updateUser(@Args('updateUserData') updateUserData: UpdateUserInput): User {
-    return this.userServices.updateUser();
+    return this.userServices.updateUser(updateUserData);
   }
 
   @Mutation(() => User)
   deleteUser(@Args('deleteUserData') deleteUserData: DeleteUserInput): User {
-    return this.userServices.deleteUser();
+    return this.userServices.deleteUser(deleteUserData);
   }
 }
